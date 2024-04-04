@@ -338,7 +338,7 @@ void testSumProduct(void) {
         printToBuff(&bufferStart, ':', &remainingSize, (NodePtr)getElementPtr(sumProduct, i));
         assert(strcmp(buff[i - 1], sumProductExpected[i - 1]) == 0);
     }
-    free(sumProduct);
+    deleteVector(sumProduct);
     //printf("Test for sumVectors passed.\n");
 }
 
