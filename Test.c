@@ -295,8 +295,10 @@ void testDotProduct(void) {
     int remainingSize = sizeof(buff);
     printToBuff(&bufferStart, ':', &remainingSize, dotProduct);
     assert(strcmp(buff, dotProductExpected) == 0);
-	
-    deleteNodeTree(&dotProduct);
+
+    int counter = 0; // only for deleteNodeTree() function
+    deleteNodeTree(&dotProduct, &counter); // delete node tree
+    free(dotProduct); // delete the highest node in node tree
     //printf("Test for scalarVectors passed.\n");
 }
 
@@ -332,28 +334,41 @@ void testSumProduct(void) {
     char buff[3][10];
     char* bufferStart;
     int remainingSize;
+
+    int counter = 0; // for deleteNodeTree function
+    NodePtr node = (NodePtr) malloc(sizeof(struct Node));
     for (int i = 1; i <= SIZE; i++) {
         remainingSize = sizeof(buff[0]);
         bufferStart = buff[i - 1];
         printToBuff(&bufferStart, ':', &remainingSize, (NodePtr)getElementPtr(sumProduct, i));
         assert(strcmp(buff[i - 1], sumProductExpected[i - 1]) == 0);
+        
+        // delete node tree in every iteration 
+        node = (NodePtr)getElementPtr(sumProduct, i); 
+        deleteNodeTree(&node, &counter);
     }
-    deleteVector(sumProduct);
+
+    deleteVector(&sumProduct); // delete vector
     //printf("Test for sumVectors passed.\n");
 }
 
-void deleteNodeTree(NodePtr* node) {
+void deleteNodeTree(NodePtr* node, int* counter) { // we use "counter" to find the highest node in binary tree and don't delete it
     if (*node == NULL) {
         printf("Node tree is already free.\n");
         return;
     }
     if ((*node) -> leftNode != NULL) {
-        deleteNodeTree(&((*node) -> leftNode));
+        (*counter)++;
+        deleteNodeTree(&((*node) -> leftNode), counter);
     }
     if ((*node) -> rightNode != NULL) {
-        deleteNodeTree(&((*node) -> rightNode));
+        (*counter)++;
+        deleteNodeTree(&((*node) -> rightNode), counter);
     }
+
+    if (!*counter) { return; } // is it the highest node? We check it here
     free(*node);
     *node = NULL;
+    (*counter)--;
 }
 
