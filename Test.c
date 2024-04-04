@@ -64,8 +64,8 @@ void testSumFloat() {
 }
 
 void testMultiplyFloat() {
-    float firstValue = -10;
-    float secondValue = 8;
+    float firstValue = -10.0;
+    float secondValue = 8.1;
     float expectedResult = firstValue * secondValue;
 
     float* firstValuePtr = &firstValue;
@@ -85,8 +85,8 @@ void testFloatFunctions() {
 }
 
 void testSumDouble() {
-    double firstValue = -10.0;
-    double secondValue = 8.1;
+    double firstValue = -10.0433;
+    double secondValue = 8.187;
     double expectedResult = firstValue + secondValue;
 
     double* firstValuePtr = &firstValue;
@@ -100,8 +100,8 @@ void testSumDouble() {
 }
 
 void testMultiplyDouble() {
-    double firstValue = -10;
-    double secondValue = 8;
+    double firstValue = -10.0433;
+    double secondValue = 8.187;
     double expectedResult = firstValue * secondValue;
 
     double* firstValuePtr = &firstValue;
@@ -122,7 +122,7 @@ void testDoubleFunctions() {
 
 void testSumComplex() {
     Complex firstValue = {-10.9, 198,2};
-    Complex secondValue = {-10.9, 198,2};
+    Complex secondValue = {-34.9, 43.45};
     Complex expectedResult = {firstValue.x + secondValue.x, firstValue.y + secondValue.y};
 
     Complex* firstValuePtr = &firstValue;
@@ -137,7 +137,7 @@ void testSumComplex() {
 
 void testMultiplyComplex() {
     Complex firstValue = {-10.9, 198,2};
-    Complex secondValue = {-10.9, 198,2};
+    Complex secondValue = {-34.9, 43.45};
     Complex expectedResult = {firstValue.x * secondValue.x - firstValue.y * secondValue.y,
                               firstValue.x * secondValue.y + firstValue.y * secondValue.x};
 
