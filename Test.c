@@ -97,7 +97,6 @@ void testSumDouble() {
     assert(*(double*)result == expectedResult);
     //printf("The function \"sumDouble\" passed the test\n");
     free(result);
-    return 0;
 }
 
 void testMultiplyDouble() {
@@ -113,14 +112,12 @@ void testMultiplyDouble() {
     assert(*(double*)result == expectedResult);
     //printf("The function \"multiplyDouble\" passed the test\n");
     free(result);
-    return 0;
 }
 
 void testDoubleFunctions() {
     testSumDouble();
     testMultiplyDouble();
     //printf("\"Double\" functions passed the test\n");
-    return 0;
 }
 
 void testSumComplex() {
@@ -136,7 +133,6 @@ void testSumComplex() {
     assert(((Complex*)result) -> x == expectedResult.x && ((Complex*)result) -> y == expectedResult.y);
     //printf("The function \"sumComplex\" passed the test\n");
     free(result);
-    return 0;
 }
 
 void testMultiplyComplex() {
@@ -153,14 +149,12 @@ void testMultiplyComplex() {
     assert(((Complex*)result) -> x == expectedResult.x && ((Complex*)result) -> y == expectedResult.y);
     //printf("The function \"multiplyComplex\" passed the test\n");
     free(result);
-    return 0;
 }
 
 void testComplexFunctions() {
     testSumComplex();
     testMultiplyComplex();
     //printf("\"Complex\" functions passed the test\n");
-    return 0;
 }
 
 /// Bellow is block of code to test Vector functions
