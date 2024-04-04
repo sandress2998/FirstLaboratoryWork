@@ -286,16 +286,16 @@ void testDotProduct(void) {
     setElementValue(secondVector, 3, (void*) nodeForInit);
 
     free(nodeForInit);
-
-    void* dotProduct = safemalloc(getNodeSize());
-    scalarVectors(firstVector, secondVector, dotProduct);
+	
+    NodePtr dotProduct = safemalloc(getNodeSize());
+    scalarVectors(firstVector, secondVector, (void*)dotProduct);
 
     char buff[1000];
     char* bufferStart = buff;
     int remainingSize = sizeof(buff);
-    printToBuff(&bufferStart, ':', &remainingSize, (NodePtr)dotProduct);
+    printToBuff(&bufferStart, ':', &remainingSize, dotProduct);
     assert(strcmp(buff, dotProductExpected) == 0);
-
+	
     deleteNodeTree(&dotProduct);
     //printf("Test for scalarVectors passed.\n");
 }
