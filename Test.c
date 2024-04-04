@@ -296,7 +296,7 @@ void testDotProduct(void) {
     printToBuff(&bufferStart, ':', &remainingSize, (NodePtr)dotProduct);
     assert(strcmp(buff, dotProductExpected) == 0);
 
-    free(dotProduct);
+    deleteDotProduct(&dotProduct);
     //printf("Test for scalarVectors passed.\n");
 }
 
@@ -342,4 +342,18 @@ void testSumProduct(void) {
     //printf("Test for sumVectors passed.\n");
 }
 
+void deleteNodeTree(NodePtr* node) {
+    if (*node == NULL) {
+        printf("Node tree is already free.\n");
+        return;
+    }
+    if ((*node) -> leftNode != NULL) {
+        deleteNodeTree(&((*node) -> leftNode));
+    }
+    if ((*node) -> rightNode != NULL) {
+        deleteNodeTree(&((*node) -> rightNode));
+    }
+    free(*node);
+    *node = NULL;
+}
 
