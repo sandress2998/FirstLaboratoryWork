@@ -296,7 +296,7 @@ void testDotProduct(void) {
     printToBuff(&bufferStart, ':', &remainingSize, (NodePtr)dotProduct);
     assert(strcmp(buff, dotProductExpected) == 0);
 
-    deleteDotProduct(&dotProduct);
+    deleteNodeTree(&dotProduct);
     //printf("Test for scalarVectors passed.\n");
 }
 
