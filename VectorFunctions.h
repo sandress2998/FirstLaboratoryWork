@@ -1,4 +1,5 @@
 #pragma once
+#include "FieldInfo.h"
 
 typedef struct Vector Vector;
 
