@@ -8,18 +8,17 @@
 #include "TypeService.h"
 #include "Vector.h"
 
-
 /// the start point
 
-Vector* buildVector(int size, void (*setVectorInfo) (Vector*)) {
+Vector* buildVector(int size, FieldInfo* typeOperationsService) {
     if (size <= 0) correctSizeError();
+    // create vector
     Vector* vector = (Vector*) safemalloc(sizeof(Vector));
     vector -> size = size;
-    setVectorInfo(vector);
-    return vector;
-}
+    vector -> fieldInfo = typeOperationsService;
+    vector -> pointer = safemalloc ((vector -> fieldInfo -> elementSize) * size);
 
-void initializeVector(Vector* vector) {
+    // initialize vector
     void* buf = safemalloc (vector -> fieldInfo -> elementSize);
     vector -> pointer = safemalloc ((vector -> fieldInfo -> elementSize) * (vector -> size));
     for(int i = 1; i <= (vector -> size); ++i) {
@@ -27,48 +26,8 @@ void initializeVector(Vector* vector) {
         setElementValue(vector, i, buf);
     }
     free(buf);
-}
 
-/// "setVectorInfo" functions
-
-void setVectorIntInfo(Vector* vector) {
-    if (vector == NULL) emptyError();
-
-    vector -> fieldInfo = setIntOperationsService();
-
-    printf("Enter vector elements int values. Size: %d\n", vector -> size);
-    initializeVector(vector);
-
-}
-
-void setVectorFloatInfo(Vector* vector) {
-    if (vector == NULL) emptyError();
-
-    vector -> fieldInfo = setFloatOperationsService();
-
-    printf("Enter vector elements float values. Size: %d\n", vector -> size);
-    initializeVector(vector);
-
-}
-
-void setVectorDoubleInfo(Vector* vector) {
-    if (vector == NULL) emptyError();
-
-    vector -> fieldInfo = setDoubleOperationsService();
-
-    printf("Enter vector elements double values. Size: %d\n", vector -> size);
-    initializeVector(vector);
-
-}
-
-void setVectorComplexInfo(Vector* vector) {
-    if (vector == NULL) emptyError();
-
-    vector -> fieldInfo = setComplexOperationsService();
-
-    printf("Enter vector elements complex values. Size: %d\n", vector -> size);
-    initializeVector(vector);
-
+    return vector;
 }
 
 /// Support vector functions
