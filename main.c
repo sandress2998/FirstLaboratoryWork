@@ -2,9 +2,13 @@
 #include <stdlib.h>
 
 #include "Test.h"
-//#include "VectorFunctions.h"
+/* for following example
+#include "VectorFunctions.h"
+#include "TypeService.h"
+*/
 
 int main() {
+
     testIntFunctions();
     testFloatFunctions();
     testDoubleFunctions();
@@ -13,17 +17,15 @@ int main() {
     testDotProduct();
     testSumProduct();
 
-    /* The example for dot product
-    Vector* vector1 = buildVector(3, &setVectorDoubleInfo);
-    Vector* vector2 = buildVector(3, &setVectorDoubleInfo);
-    void* p = malloc(sizeof(double));
+    // The example for dot product
+    /*
+    Vector* vector1 = buildVector(3, &intOperationsService);
+    Vector* vector2 = buildVector(3, &intOperationsService);
+    void* p = malloc(sizeof(int));
 
     scalarVectors(vector1, vector2, p);
 
-    printf("%.2f\n", *(double*)p);
+    printf("%d\n", *(int*)p);
     */
     return 0;
 }
-
-
-
