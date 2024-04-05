@@ -1,33 +1,21 @@
 #include "Complex.h"
-#include "FieldInfo.h"
 #include "TypeService.h"
 
-static const FieldInfo intOperationsService = {&sumInt, &multiplyInt, &getIntValue, &printInt, sizeof(int)};
-static const FieldInfo floatOperationsService = {&sumFloat, &multiplyFloat, &getFloatValue, &printFloat, sizeof(float)};
-static const FieldInfo doubleOperationsService = {&sumDouble, &multiplyDouble, &getDoubleValue, &printDouble, sizeof(double)};
-static const FieldInfo complexOperationsService = {&sumComplex, &multiplyComplex, &getComplexValue, &printComplex, sizeof(Complex)};
 
-
-// добавить const
-FieldInfo* setIntOperationsService() { return &intOperationsService; };
-FieldInfo* setFloatOperationsService() { return &floatOperationsService; };
-FieldInfo* setDoubleOperationsService() { return &doubleOperationsService; };
-FieldInfo* setComplexOperationsService() { return &complexOperationsService; };
-
-
-/// Definition (Implementation)
+/// Definitions (Implementation) of type functions
 
 // INT
 
-void sumInt(const void* a, const void* b, void* c) {
-    *(int*)c = (*((const int*)a))+(*((const int*)b));
+void sumInt(const void* a, const void* b, void* res) {
+    *(int*)res = (*((const int*)a))+(*((const int*)b));
 }
 
-void multiplyInt(const void* a, const void* b, void* c) {
-    *(int*)c = *((const int*) a) * *((const int*) b);
+void multiplyInt(const void* a, const void* b, void* res) {
+    *(int*)res = *((const int*) a) * *((const int*) b);
 }
 
 void getIntValue(void* a) {
+    printf("Enter int value:\n");
     scanf("%d", (int*)a);
 }
 void printInt(void* a) {
@@ -37,15 +25,16 @@ void printInt(void* a) {
 
 // FLOAT
 
-void sumFloat(const void* a, const void* b, void* c) {
-    *(float*)c = (*((const float*) a)) + *((const float*) b);
+void sumFloat(const void* a, const void* b, void* res) {
+    *(float*)res = (*((const float*) a)) + *((const float*) b);
 }
 
-void multiplyFloat(const void* a, const void* b, void* c) {
-    *(float*)c = *((const float*) a) * *((const float*) b);
+void multiplyFloat(const void* a, const void* b, void* res) {
+    *(float*)res = *((const float*) a) * *((const float*) b);
 }
 
 void getFloatValue(void* a) {
+    printf("Enter float value:\n");
     scanf("%f", (float*)a);
 }
 
@@ -55,15 +44,16 @@ void printFloat(void* a) {
 
 // DOUBLE
 
-void sumDouble(const void* a, const void* b, void* c) {
-    *(double*)c = *((const double*) a) + *((const double*) b);
+void sumDouble(const void* a, const void* b, void* res) {
+    *(double*)res = *((const double*) a) + *((const double*) b);
 }
 
-void multiplyDouble(const void* a, const void* b, void* c) {
-    *(double*)c = *((const double*) a) * *((const double*) b);
+void multiplyDouble(const void* a, const void* b, void* res) {
+    *(double*)res = *((const double*) a) * *((const double*) b);
 }
 
 void getDoubleValue(void* a) {
+    printf("Enter double value:\n");
     scanf("%lf", (double*)a);
 }
 
@@ -73,17 +63,18 @@ void printDouble(void* a) {
 
 // COMPLEX
 
-void sumComplex(const void* a, const void* b, void* c) {
-    ((Complex*)c) -> x = (((const Complex*) a) -> x) + (((const Complex*) b) -> x);
-    ((Complex*)c) -> y = (((const Complex*) a) -> y) + (((const Complex*) b) -> y);
+void sumComplex(const void* a, const void* b, void* res) {
+    ((Complex*)res) -> x = (((const Complex*) a) -> x) + (((const Complex*) b) -> x);
+    ((Complex*)res) -> y = (((const Complex*) a) -> y) + (((const Complex*) b) -> y);
 }
 
-void multiplyComplex(const void* a, const void* b, void* c) {
-    ((Complex*)c) -> x = (((const Complex*) a) -> x) * (((const Complex*) b) -> x) - (((const Complex*) a) -> y) * (((const Complex*) b) -> y);
-    ((Complex*)c) -> y = (((const Complex*) a) -> x) * (((const Complex*) b) -> y) + (((const Complex*) a) -> y) * (((const Complex*) b) -> x);
+void multiplyComplex(const void* a, const void* b, void* res) {
+    ((Complex*)res) -> x = (((const Complex*) a) -> x) * (((const Complex*) b) -> x) - (((const Complex*) a) -> y) * (((const Complex*) b) -> y);
+    ((Complex*)res) -> y = (((const Complex*) a) -> x) * (((const Complex*) b) -> y) + (((const Complex*) a) -> y) * (((const Complex*) b) -> x);
 }
 
 void getComplexValue(void* a) {
+    printf("Enter complex value:\n");
     scanf("%lf", &(((Complex*)a) -> x));
     scanf("%lf", &(((Complex*)a) -> y));
 }
