@@ -5,7 +5,6 @@
 
 #include "Complex.h"
 #include "VectorFunctions.h"
-#include "TypeService.h"
 #include "Vector.h"
 
 /// the start point
