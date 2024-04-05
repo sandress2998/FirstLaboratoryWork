@@ -2,15 +2,7 @@
 
 typedef struct Vector Vector;
 
-
-Vector* buildVector(int size, void (*setVectorInfo) (Vector* vectorPtr));
-void initializeVector(Vector* vectorPtr); // It finishes building Vector according to available data
-
-
-void setVectorIntInfo(Vector* vectorPtr);
-void setVectorFloatInfo(Vector* vectorPtr);
-void setVectorDoubleInfo(Vector* vectorPtr);
-void setVectorComplexInfo(Vector* vectorPtr);
+Vector* buildVector(int size, FieldInfo* typeOperationsService);
 
 void sumVectors(const Vector* firstVectorPtr, const Vector*  secondVectorPtr, Vector* resultVectorPtr);
 void* scalarVectors(const Vector* firstVectorPtr, const Vector* secondVectorPtr, void* result);
